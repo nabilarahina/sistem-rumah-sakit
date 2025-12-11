@@ -1,0 +1,5 @@
+{
+  "name": "SAAPS - Hospital AI Coordinator",
+  "description": "A smart hospital coordination system that uses Google Gemini AI to route user queries to specialized sub-agents for patient management, scheduling, medical info, and reporting.",
+  "requestFramePermissions": []
+}
