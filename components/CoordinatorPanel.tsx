@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Network, ArrowRight, BrainCircuit, CheckCircle2, AlertCircle } from 'lucide-react';
 import { AgentType, RouterResponse, AgentResponse } from '../types';
-import { AGENTS } from '../constants';
+import { AGENTS, getIcon } from '../constants';
 import { coordinateRequest, processAgentResponse } from '../services/geminiService';
 import ReactMarkdown from 'react-markdown';
 
@@ -54,6 +54,7 @@ const CoordinatorPanel: React.FC<CoordinatorPanelProps> = ({ onAgentActivate }) 
       setStage('DONE');
 
     } catch (err) {
+      console.error(err);
       setError("An unexpected system error occurred.");
       setStage('DONE');
     } finally {
@@ -172,9 +173,7 @@ const CoordinatorPanel: React.FC<CoordinatorPanelProps> = ({ onAgentActivate }) 
                     <div className="flex items-center gap-3 p-3 bg-emerald-50 rounded-lg border border-emerald-100">
                       <div className={`p-2 rounded text-white ${AGENTS[routerResult.targetAgent]?.color || 'bg-gray-500'}`}>
                         {AGENTS[routerResult.targetAgent]?.icon && 
-                          // Simple mapping wrapper not needed here if we import getIcon properly in real app, simplified for XML
-                          // Reusing logic from Sidebar mostly
-                          (<span>★</span>)
+                           getIcon(AGENTS[routerResult.targetAgent].icon, 20)
                         }
                       </div>
                       <span className="font-bold text-emerald-900">
