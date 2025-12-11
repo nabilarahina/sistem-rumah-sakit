@@ -1,6 +1,14 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { AgentType, RouterResponse, AgentResponse } from "../types";
 
+// Polyfill for TypeScript build to recognize process.env without strict @types/node configuration
+declare var process: {
+  env: {
+    API_KEY?: string;
+    [key: string]: any;
+  }
+};
+
 // Initialize Gemini Client
 // Note: process.env.API_KEY is assumed to be available as per instructions.
 const apiKey = process.env.API_KEY || '';
