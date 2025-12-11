@@ -1,4 +1,4 @@
-import { GoogleGenAI, Type, Schema } from "@google/genai";
+import { GoogleGenAI, Type } from "@google/genai";
 import { AgentType, RouterResponse, AgentResponse } from "../types";
 
 // Initialize Gemini Client
@@ -18,7 +18,7 @@ export const coordinateRequest = async (userQuery: string): Promise<RouterRespon
 
   const modelId = "gemini-2.5-flash";
   
-  const schema: Schema = {
+  const schema = {
     type: Type.OBJECT,
     properties: {
       targetAgent: {
